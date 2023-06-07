@@ -10,21 +10,11 @@ config {
   }
 }
 
-runner {
-  enabled = true
-  data_source "git" {
-    url = "https://github.com/demophoon/terraform-brittcorp-trivial.git"
-  }
-}
-
 app "{{ .ProjectName }}-demo" {
   build {
-    use "docker" {  }
-    registry {
-      use "docker" {
-        image = "registry.services.demophoon.com/demophoon/nginx-test"
-        tag = gitrefpretty()
-      }
+    use "docker-pull" {
+      image = "registry.services.demophoon.com/demophoon/wdt"
+      tag = "latest"
     }
   }
 
